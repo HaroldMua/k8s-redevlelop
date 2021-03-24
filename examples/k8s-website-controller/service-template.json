@@ -1,0 +1,23 @@
+{
+  "apiversion": "v1",
+  "kind": "Service",
+  "metadata": {
+    "labels": {
+      "webserver": "[NAME]"
+    },
+    "name": "[NAME]"
+  },
+  "spec": {
+    "type": "NodePort",
+    "ports": [
+      {
+        "port": 80,
+        "protocal": "TCP",
+        "targetPort": 80
+      }
+    ],
+    "selector": {
+      "webserver": "[NAME]"
+    }
+  }
+}
