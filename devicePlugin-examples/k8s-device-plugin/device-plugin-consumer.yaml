@@ -9,4 +9,5 @@ spec:
       command: ["/bin/sleep", "1000"]
       resources:
         limits:
+          # "extend-k8s.io/example" is written according to func GetResourceNamespace() and func Discover() in pkg/lister.go
           extend-k8s.io/example: 1
