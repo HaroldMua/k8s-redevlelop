@@ -2,6 +2,8 @@
 
 This is a sample operator using Kubebuilder tool, so generating code, creating CRD YAMLs and deploying code is done in the standard way.
 
+Refer to [present operator](https://github.com/martonsereg/present-operator) 
+
 ## Create a kubebuilder porject
 
 ```
