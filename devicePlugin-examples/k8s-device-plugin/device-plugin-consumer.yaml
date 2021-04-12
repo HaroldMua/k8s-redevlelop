@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: device-plugin-consumer
+spec:
+  containers:
+    - name: pause
+      image: busybox
+      command: ["/bin/sleep", "1000"]
+      resources:
+        limits:
+          extend-k8s.io/example: 1
