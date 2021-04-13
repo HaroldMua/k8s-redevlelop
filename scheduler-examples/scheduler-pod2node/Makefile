@@ -1,5 +1,5 @@
 # Image URL to use all building/pushing image targets
-IMG ?= haroldmua/scheduler-pod2node:v1
+IMG ?= haroldmua/scheduler-pod2node:v5
 
 # Build the docker image
 docker-build:
