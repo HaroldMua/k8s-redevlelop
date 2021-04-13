@@ -1,4 +1,4 @@
-## Kubernetes Scheduler Example [![Docker build](https://img.shields.io/docker/automated/onuryilmaz/k8s-scheduler-example.svg)](https://hub.docker.com/r/onuryilmaz/k8s-scheduler-example/tags/)
+## Kubernetes Scheduler Example
 
 This repository contains a Kubernetes scheduler code for random node assignment.
 
