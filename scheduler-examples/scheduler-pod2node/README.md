@@ -1,6 +1,6 @@
 ## Kubernetes Scheduler Example
 
-This repository contains a Kubernetes scheduler code for random node assignment.
+This repository contains a Kubernetes scheduler code for random node assignment. Refer to [k8s-scheduler-example](https://github.com/onuryilmaz/k8s-scheduler-example)
 
 ### Build and push
 ```
