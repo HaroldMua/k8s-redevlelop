@@ -9,3 +9,9 @@ RUN go build -v -o scheduler
 FROM alpine:latest
 COPY --from=builder /go/src/github.com/HaroldMua/k8s-redevelop/scheduler-examples/scheduler-pod2node/scheduler /usr/local/bin/scheduler
 CMD ["scheduler"]
+
+#or in this way:
+
+#FROM ubuntu
+#COPY --from=builder /go/src/github.com/onuryilmaz/k8s-scheduler-example/scheduler /scheduler
+#CMD ["./scheduler"]
