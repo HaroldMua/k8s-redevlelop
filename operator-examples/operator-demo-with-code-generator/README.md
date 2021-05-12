@@ -192,6 +192,9 @@ pkg
 
 * 修改 [hack/update-codegen.sh](hack/update-codegen.sh) 文件，主要是修改生成代码的位置和版本
 
+Attention!!!
+[hack/update-codegen.sh](hack/update-codegen.sh)中路径的前缀名，go.mod中module名，工程文件夹名，三者保持一致
+
 * 在工程的根目录下运行 `./hack/update-codegen.sh`，正常运行得到以下输出：
 ```
 脚本目录: ./hack/..
@@ -273,7 +276,7 @@ b. 实际处理消息的方法是syncHandler，这里面可以添加实际的业
 
 * 在工程的根目录下运行`go build`，生成operator-demo-with-code-generator的二进制可执行文件
 
-* 在k8s环境中，执行命令./k8s_customize_controller -kubeconfig=$HOME/.kube/config -alsologtostderr=true，会立即启动controller，看到控制台输出如下：
+* 在k8s环境中，执行命令./operator-demo-with-code-generator -kubeconfig=$HOME/.kube/config -alsologtostderr=true，会立即启动controller，看到控制台输出如下：
 ```
 I0505 16:55:49.473096    2675 controller.go:72] Setting up event handlers
 I0505 16:55:49.473978    2675 controller.go:96] 开始controller业务，开始一次缓存数据同步

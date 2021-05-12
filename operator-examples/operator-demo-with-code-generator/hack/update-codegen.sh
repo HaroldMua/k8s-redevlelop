@@ -31,10 +31,15 @@ echo "path : $CODEGEN_PKG"
 # --output-base    because this script should also be able to run inside the vendor dir of
 #                  k8s.io/kubernetes. The output-base is needed for the generators to output into the vendor dir
 #                  instead of the $GOPATH directly. For normal projects this can be dropped.
+# =========================
+# Attention!!!
+# the prefix of the path "operator-demo-with-code-generator" needs to be same as the module name in go.mod
+# =========================
+
 bash "${CODEGEN_PKG}"/generate-groups.sh "deepcopy,client,informer,lister" \
   operator-demo-with-code-generator/pkg/client operator-demo-with-code-generator/pkg/apis \
   bolingcavalry:v1 \
-  --output-base "$(dirname "${BASH_SOURCE[0]}")/.." \
+  --output-base "$(dirname "${BASH_SOURCE[0]}")/../.." \
   --go-header-file "${SCRIPT_ROOT}"/hack/boilerplate.go.txt
 
 # To use your own boilerplate text append:
