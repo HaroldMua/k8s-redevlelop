@@ -176,6 +176,7 @@ If everything goes well, then we can BUILD & PUSH the controller image, and depl
 
 ## Build & push
 
+Actually, I did not build & push the image to my dockerhub, and the Dockerfile need to be modifying refered to [this](https://github.com/HaroldMua/k8s-redevlelop/blob/master/operator-examples/demomicroservice/Dockerfile).
 ```
 make docker-build docker-push IMG=<some-registry>/<project-name>:tag
 ```
