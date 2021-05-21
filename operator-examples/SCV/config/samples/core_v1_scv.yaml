@@ -1,0 +1,15 @@
+#apiVersion: core.run-linux.com/v1
+#kind: Scv
+#metadata:
+#  name: scv-sample
+#spec:
+#  # Add fields here
+#  foo: bar
+
+apiVersion: core.run-linux.com/v1
+kind: Scv
+metadata:
+  name: scv-sample
+spec:
+  # Add fields here
+  updateInterval: 1000
