@@ -58,29 +58,38 @@ cardList使用slice表示，card使用结构体表示
 apiVersion: core.run-linux.com/v1
 kind: Scv
 metadata:
-  creationTimestamp: "2021-05-21T01:55:12Z"
+  creationTimestamp: "2021-05-21T03:16:35Z"
   generation: 2
-  name: gpu02-poweredge-t420
-  resourceVersion: "22929326"
-  selfLink: /apis/core.run-linux.com/v1/scvs/gpu02-poweredge-t420
-  uid: bd0121d9-46e4-4c52-8cb7-caed885a9580
+  name: gpu09-tesla-p100
+  resourceVersion: "191912627"
+  selfLink: /apis/core.run-linux.com/v1/scvs/gpu09-tesla-p100
+  uid: 622ffc5c-cfe1-4201-a1de-f407ef6f54f3
 spec:
   updateInterval: 1000
 status:
   cardList:
-  - bandwidth: 8000
-    clock: 5705
-    core: 1911
-    freeMemory: 12196
+  - bandwidth: 15760
+    clock: 715
+    core: 1328
+    freeMemory: 1015
     health: Healthy
     id: 0
-    model: TITAN Xp
+    model: Tesla P100-PCIE-16GB
     power: 250
-    totalMemory: 12196
-  cardNumber: 1
-  freeMemorySum: 12196
-  totalMemorySum: 12196
-  updateTime: "2021-05-21T01:55:13Z"
+    totalMemory: 16280
+  - bandwidth: 15760
+    clock: 715
+    core: 1328
+    freeMemory: 48
+    health: Healthy
+    id: 1
+    model: Tesla P100-PCIE-16GB
+    power: 250
+    totalMemory: 16280
+  cardNumber: 2
+  freeMemorySum: 1063
+  totalMemorySum: 32560
+  updateTime: "2021-05-21T03:16:36Z"
 ```
 
 ### Get Started
