@@ -178,6 +178,7 @@ func (c *Collector) Process() {
 
 		// update the status of Scv, if there are no changes in GPU info, don't need update status
 		if c.NeedUpdate(currentScv.Status) {
+			// APIResource struct have the DeepCopy() function, refer to https://pkg.go.dev/k8s.io/apimachinery/pkg/apis/meta/v1#APIResource
 			updateScv := currentScv.DeepCopy()
 			updateScv.Status = v1.ScvStatus{
 				CardList:       c.cardList,
