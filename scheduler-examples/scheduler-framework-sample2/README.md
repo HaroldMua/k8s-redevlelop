@@ -57,7 +57,9 @@ data:
 
 ### 验证插件
 
-使用[./test-scheduler.yaml](./test-scheduler.yaml)验证插件，schedulerName字段指定自定义调度器
+使用[./test-scheduler.yaml](./test-scheduler.yaml)验证插件，schedulerName字段指定自定义调度器.
+
+运行`kubectl apply -f ./test-scheduler.yaml`后，查看pod的描述信息：
 
 ```
 Name:         test-scheduler-cb8bdd788-b6sdz
