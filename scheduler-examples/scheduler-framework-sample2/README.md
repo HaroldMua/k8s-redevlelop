@@ -62,28 +62,28 @@ data:
 运行`kubectl apply -f ./test-scheduler.yaml`后，查看pod的描述信息：
 
 ```
-Name:         test-scheduler-cb8bdd788-b6sdz
+Name:         test-scheduler-cb8bdd788-gm6pk
 Namespace:    default
 Priority:     0
 Node:         gpu02-poweredge-t420/192.168.1.16
-Start Time:   Tue, 01 Jun 2021 11:15:12 +0800
+Start Time:   Tue, 01 Jun 2021 15:14:11 +0800
 Labels:       app=test-scheduler
               pod-template-hash=cb8bdd788
 Annotations:  <none>
 Status:       Running
-IP:           10.244.2.80
+IP:           10.244.2.85
 IPs:
-  IP:           10.244.2.80
+  IP:           10.244.2.85
 Controlled By:  ReplicaSet/test-scheduler-cb8bdd788
 Containers:
   nginx:
-    Container ID:   docker://e0f0d9a75273ceef9344c818b31b9b0c759bc6924e67b7a486aee17ee63ec57c
+    Container ID:   docker://78c9a59946c0fae74daf1460f83139603f228c9065a251e9247497725af4b81b
     Image:          nginx:1.19.2-alpine
     Image ID:       docker-pullable://nginx@sha256:a97eb9ecc708c8aa715ccfb5e9338f5456e4b65575daf304f108301f3b497314
     Port:           80/TCP
     Host Port:      0/TCP
     State:          Running
-      Started:      Tue, 01 Jun 2021 11:15:24 +0800
+      Started:      Tue, 01 Jun 2021 15:14:15 +0800
     Ready:          True
     Restart Count:  0
     Environment:    <none>
@@ -105,27 +105,26 @@ Node-Selectors:  <none>
 Tolerations:     node.kubernetes.io/not-ready:NoExecute for 300s
                  node.kubernetes.io/unreachable:NoExecute for 300s
 Events:
-  Type     Reason            Age                     From                           Message
-  ----     ------            ----                    ----                           -------
-  Warning  FailedScheduling  3m44s (x19 over 6m30s)  sample-scheduler               0/2 nodes are available: 1 Node: gpu02-poweredge-t420, 1 Node: gpu03-poweredge-t420.
-  Normal   Scheduled         3m34s                   sample-scheduler               Successfully assigned default/test-scheduler-cb8bdd788-b6sdz to gpu02-poweredge-t420
-  Normal   Pulling           3m31s                   kubelet, gpu02-poweredge-t420  Pulling image "nginx:1.19.2-alpine"
-  Normal   Pulled            3m24s                   kubelet, gpu02-poweredge-t420  Successfully pulled image "nginx:1.19.2-alpine"
-  Normal   Created           3m23s                   kubelet, gpu02-poweredge-t420  Created container nginx
-  Normal   Started           3m22s                   kubelet, gpu02-poweredge-t420  Started container nginx
+  Type     Reason            Age                From                           Message
+  ----     ------            ----               ----                           -------
+  Warning  FailedScheduling  84s (x19 over 4m)  sample-scheduler               0/2 nodes are available: 1 Print info. Node: gpu02-poweredge-t420, 1 Print info. Node: gpu03-poweredge-t420.
+  Normal   Scheduled         74s                sample-scheduler               Successfully assigned default/test-scheduler-cb8bdd788-gm6pk to gpu02-poweredge-t420
+  Normal   Pulled            71s                kubelet, gpu02-poweredge-t420  Container image "nginx:1.19.2-alpine" already present on machine
+  Normal   Created           70s                kubelet, gpu02-poweredge-t420  Created container nginx
+  Normal   Started           70s                kubelet, gpu02-poweredge-t420  Started container nginx
 ```
 
 因为排除没有 cpu=true 标签的节点，故pod调度失败，处于Pending状态，自定义插件日志也会打印信息
 
 ```
-I0601 03:15:02.878743       1 factory.go:321] "Unable to schedule pod; no fit; waiting" pod="default/test-scheduler-cb8bdd788-b6sdz" err="0/2 nodes are available: 1 Node: gpu02-poweredge-t420, 1 Node: gpu03-poweredge-t420."
+I0601 07:12:51.806374       1 factory.go:321] "Unable to schedule pod; no fit; waiting" pod="default/test-scheduler-cb8bdd788-gm6pk" err="0/2 nodes are available: 1 Print info. Node: gpu02-poweredge-t420, 1 Print info. Node: gpu03-poweredge-t420."```
 ```
 
 给节点增加`cpu=true`标签后，Pod已经正常调度，处于running状态，同时自定义插件也输出对应的日志
 
 ```
-I0601 03:15:12.880667       1 default_binder.go:51] Attempting to bind default/test-scheduler-cb8bdd788-b6sdz to gpu02-poweredge-t420
-I0601 03:15:12.888365       1 scheduler.go:592] "Successfully bound pod to node" pod="default/test-scheduler-cb8bdd788-b6sdz" node="gpu02-poweredge-t420" evaluatedNodes=2 feasibleNodes=1
-I0601 03:15:12.888712       1 eventhandlers.go:209] delete event for unscheduled pod default/test-scheduler-cb8bdd788-b6sdz
-I0601 03:15:12.888737       1 eventhandlers.go:229] add event for scheduled pod default/test-scheduler-cb8bdd788-b6sdz
+I0601 07:14:11.822855       1 default_binder.go:51] Attempting to bind default/test-scheduler-cb8bdd788-gm6pk to gpu02-poweredge-t420
+I0601 07:14:11.829111       1 scheduler.go:592] "Successfully bound pod to node" pod="default/test-scheduler-cb8bdd788-gm6pk" node="gpu02-poweredge-t420" evaluatedNodes=2 feasibleNodes=1
+I0601 07:14:11.829175       1 eventhandlers.go:209] delete event for unscheduled pod default/test-scheduler-cb8bdd788-gm6pk
+I0601 07:14:11.829234       1 eventhandlers.go:229] add event for scheduled pod default/test-scheduler-cb8bdd788-gm6pk 
 ```

@@ -22,12 +22,12 @@ func (pl *sample) Name() string {
 	return Name
 }
 func (pl *sample) Filter(ctx context.Context, state *framework.CycleState, pod *v1.Pod, nodeInfo *framework.NodeInfo) *framework.Status {
-	log.Printf("Print info. filter pod: %v, node: %v", pod.Name, nodeInfo)
+	log.Printf("Print info. filter pod: %v, node: %v", pod.Name, nodeInfo)  // 此处信息会显示在调度器pod的日志中
 	log.Println(state)
 
 	// 排除没有cpu=true标签的节点
 	if nodeInfo.Node().Labels["cpu"] != "true" {
-		return framework.NewStatus(framework.Unschedulable, "Print info. Node: "+nodeInfo.Node().Name)
+		return framework.NewStatus(framework.Unschedulable, "Print info. Node: "+nodeInfo.Node().Name)   // 此处信息会显示在调度器pod的日志中
 	}
 	return framework.NewStatus(framework.Success, "Node: "+nodeInfo.Node().Name)
 }
