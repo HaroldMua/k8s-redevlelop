@@ -71,9 +71,9 @@ spec:
       containers:
         - name: scv
           image: haroldmua/scv:v2
-#          image: registry.cn-hangzhou.aliyuncs.com/njupt-isl/scv:2.0
+          # image: registry.cn-hangzhou.aliyuncs.com/njupt-isl/scv:2.0
           imagePullPolicy: Always
-# k8s容器中获取pod信息   https://blog.csdn.net/kozazyh/article/details/79463688
+          # k8s容器中获取pod信息   https://blog.csdn.net/kozazyh/article/details/79463688
           env:
             - name: NODE_NAME
               valueFrom:

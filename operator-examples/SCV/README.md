@@ -148,12 +148,12 @@ for more details.
   
 - Deploy the SCV into your kubernetes cluster:
     ```shell
-    kubectl apply -f  https://raw.githubusercontent.com/NJUPT-ISL/SCV/master/deploy/deploy.yaml
+    kubectl apply -f deploy/deploy.yaml
     ```
 
 - Undeploy the SCV and uninstall CRD
     ```shell
-    kubectl apply -f  https://raw.githubusercontent.com/NJUPT-ISL/SCV/master/deploy/deploy.yaml
+    kubectl delete -f deploy/deploy.yaml
     make uninstall
     ```  
 - After deploying the daemonset, the SCV resources will be created according to the corresponding node name.
