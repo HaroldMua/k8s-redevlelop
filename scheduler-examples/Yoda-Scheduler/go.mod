@@ -12,6 +12,7 @@ require (
 	sigs.k8s.io/controller-runtime v0.8.3
 )
 replace (
+    // https://github.com/HaroldMua/k8s-redevlelop/operator-examples/SCV
 	SCV => ../SCV
 	github.com/googleapis/gnostic => github.com/googleapis/gnostic v0.4.1
 	k8s.io/api => k8s.io/api v0.20.0
