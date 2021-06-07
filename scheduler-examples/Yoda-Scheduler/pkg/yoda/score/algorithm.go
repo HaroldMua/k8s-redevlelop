@@ -49,7 +49,7 @@ func CalculateBasicScore(value collection.MaxValue, scv *scv.Scv, pod *v1.Pod) u
 	var cardScore uint64
 	if ok, number := filter.PodFitsNumber(pod, scv); ok {   // 返回scv/number
 		isFitsMemory, memory := filter.PodFitsMemory(number, pod, scv)  // whether there are at least "number" card fits memory, reture scv/memory
-		isFitsClock, clock := filter.PodsFitsClock(number, pod, scv)   // whether there are at least "number" card fits clock, reture scv/clock
+		isFitsClock, clock := filter.PodFitsClock(number, pod, scv)   // whether there are at least "number" card fits clock, reture scv/clock
 		if isFitsMemory && isFitsClock {  // 节点上至少有“number”个card同时满足memory和clock
 			for _, card := range scv.Status.CardList {
 				if card.FreeMemory >= memory && card.Clock >= clock {   // 节点上其他的卡是否满足memory和clock要求，例如，要求2个卡，节点有3个卡

@@ -31,7 +31,7 @@ func (s *Data) Clone() framework.StateData {   // StateData is a generic type fo
 /*
 遍历集群中所有可用节点的所有可用card, 求各参数（如clock, bandwith)的最大值
  */
-func CollectMaxValue(state *framework.CycleState, pod *v1.Pod, scvList scv.ScvList) *framework.Status {
+func CollectMaxValues(state *framework.CycleState, pod *v1.Pod, scvList scv.ScvList) *framework.Status {
 	//CycleState provides a mechanism for plugins to store and retrieve arbitrary data
 	//Status indicates the result of running a plugin
 	data := Data{

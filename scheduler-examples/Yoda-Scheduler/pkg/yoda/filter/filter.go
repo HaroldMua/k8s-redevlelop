@@ -51,7 +51,7 @@ func CardFitsMemory(memory uint64, card scv.Card) bool {
 	return card.Health == "Healthy" && card.FreeMemory >= memory
 }
 
-func CardFitsClock(clock uint64, card scv.Card) bool {
+func CardFitsClock(clock uint, card scv.Card) bool {
 	return card.Health == "Healthy" && card.Clock == clock
 }
 
