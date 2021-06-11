@@ -4,10 +4,10 @@ SCV is a distributed cluster GPU sniffer, partly generated with the help of [kub
 
 Three important files is:
 - main.go
-- api/v1/scv_types.go
+- api/v1/scv_types.go (`spec` and `status` in scv_types.go are corresponding to config/crd/bases/core.run-linux.com_scvs.yaml)
 - pkg/collector/collector.go
 
-Logic here is:
+The logic of `pkg/collector/collector.go` is:
 
 ```bazaar
 NewCollector --> StartCollector
