@@ -11,7 +11,7 @@ The logic of `pkg/collector/collector.go` is:
 
 ```bazaar
 NewCollector --> StartCollector
-  createScv( the CRD "scv" already exists)
+  createScv (the CRD "scv" already exists)
   Process
     UpdateGPU
 	  CountGPU

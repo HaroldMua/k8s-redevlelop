@@ -19,6 +19,7 @@ import (
 	"SCV/pkg/log"
 )
 
+// 根据处理SCV资源的spec, status的需求，设置Collector结构体的属性
 type Collector struct {
 	// CRD info
 	cache  cache.Cache
@@ -115,6 +116,15 @@ func (c *Collector) createScv() error {
 			UpdateInterval: c.updateInterval,
 		},
 	}
+	/*
+	ClientSet仅能访问k8s自身内置的资源（即客户端集合内的资源），不能直接访问CRD自定义资源。
+	如果需要ClientSet访问CRD自定义资源，可通过client-gen代码生成器重新生成ClientSet,
+	在ClientSet集合中自动生成与CRD操作相关的接口。
+
+	https://pkg.go.dev/sigs.k8s.io/controller-runtime/pkg/client#Client
+	Client knows how to perform CRUD operations on Kubernetes objects.
+	故提供一种操作CRD自定义资源的新方式？
+	 */
 	err := c.client.Create(context.Background(), &scv)   // https://pkg.go.dev/sigs.k8s.io/controller-runtime/pkg/client#Client
 	if err != nil && !apierror.IsAlreadyExists(err) {
 		return err
@@ -198,7 +208,7 @@ func (c *Collector) Process() {
 }
 
 func NewCollector(interval int64, client client.Client, cache cache.Cache) *Collector {
-	return &Collector{
+	return &Collector{   // 对Collector结构体进行实例化
 		cardList:       make(v1.CardList, 0),
 		cardNumber:     0,
 		updateInterval: interval,
@@ -213,6 +223,8 @@ func StartCollector(c *Collector) {
 	if err := c.createScv(); err != nil {
 		panic(err)
 	}
+
+	// variables "FreeMemorySum" and "TotalMemorySum" are set in func Process()
 	c.Process()
 }
 
