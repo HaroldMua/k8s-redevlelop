@@ -194,7 +194,7 @@ func (c *Collector) Process() {
 
 			See details at api/v1/zz_generated.deepcopy.go
 			 */
-			updateScv := currentScv.DeepCopy()  //
+			updateScv := currentScv.DeepCopy()
 			updateScv.Status = v1.ScvStatus{
 				CardList:       c.cardList,
 				TotalMemorySum: c.TotalMemorySum,
