@@ -69,6 +69,10 @@ func New(_ runtime.Object, h framework.Handle) (framework.Plugin, error) {
 	mgrConfig.QPS = 1000
 	mgrConfig.Burst = 1000
 
+	/*
+	AddToScheme的作用和用法并不知道，也没必要知道
+	照葫芦画瓢就行
+	 */
 	if err := scv.AddToScheme(scheme); err != nil {
 		klog.Error(err)
 		return nil, err
