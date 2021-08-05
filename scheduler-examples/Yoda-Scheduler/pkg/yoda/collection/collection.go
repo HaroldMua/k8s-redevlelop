@@ -29,7 +29,7 @@ func (s *Data) Clone() framework.StateData {   // StateData is a generic type fo
 
 
 /*
-遍历集群中所有可用节点的所有可用card, 求各参数（如clock, bandwith)的最大值
+遍历集群中所有可用节点的所有可用card, 在满足number, memory, clock等标签参数要求前提下，求各参数（如clock, bandwith)的最大值
  */
 func CollectMaxValues(state *framework.CycleState, pod *v1.Pod, scvList scv.ScvList) *framework.Status {
 	//CycleState provides a mechanism for plugins to store and retrieve arbitrary data
@@ -51,9 +51,9 @@ func CollectMaxValues(state *framework.CycleState, pod *v1.Pod, scvList scv.ScvL
 		if ok, number := filter.PodFitsNumber(pod, s); ok {
 			isFitsMemory, memory := filter.PodFitsMemory(number, pod, s)
 			isFitsClock, clock := filter.PodFitsClock(number, pod, s)
-			if isFitsMemory && isFitsClock {
+			if isFitsMemory && isFitsClock {  // 节点满足要求
 				for _, card := range s.Status.CardList {
-					if card.FreeMemory >= memory && card.Clock >= clock {
+					if card.FreeMemory >= memory && card.Clock >= clock {   // 节点的GPU卡满足要求
 						ProcessMaxValueWithCard(card, &data)
 					}
 				}
