@@ -24,12 +24,13 @@ const (
 )
 
 func CalculateScore (s *scv.Scv, state *framework.CycleState, pod *v1.Pod, info *framework.NodeInfo) (uint64, error) {
+	// 若没有参考，自己是不可能想到使用state.Read()的，
 	d, err := state.Read("Max")   // refer to: https://pkg.go.dev/k8s.io/kubernetes/pkg/scheduler/framework#StateData
 	if err != nil {
 		klog.V(3).Infof("Error Get CycleState Info: %v", err)
 		return 0, err
 	}
-	data, ok := d.(*collection.Data)
+	data, ok := d.(*collection.Data)   // d是interface类型，但是这个写法是几个意思？
 	if !ok {
 		return 0, errors.New("The Type is not Data ")
 	}

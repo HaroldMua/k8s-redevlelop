@@ -36,7 +36,7 @@ func CollectMaxValues(state *framework.CycleState, pod *v1.Pod, scvList scv.ScvL
 	//Status indicates the result of running a plugin
 	data := Data{
 		Value: MaxValue{
-			MaxBandwidth:   1,
+			MaxBandwidth:   1,   // 设置值为1的目的是，在score阶段，MaxBandwidth将作为分母计算Bandwidth的分数
 			MaxClock:       1,
 			MaxCore:        1,
 			MaxFreeMemory:  1,
