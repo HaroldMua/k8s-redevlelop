@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: in-cluster
+  labels:
+    app: in-cluster
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: in-cluster
+  template:
+    metadata:
+      labels:
+        app: in-cluster
+    spec:
+      containers:
+        - name: in-cluster
+          image: haroldmua/in-cluster-list-pods:v1
+
