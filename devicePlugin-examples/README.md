@@ -1,5 +1,5 @@
 
-### device plugin 的实现方案
+### device plugin 的实现方案（以cola-device-plugin为例）
 
 device plugin 的工作原理其实不复杂。主要有以下步骤：
 
