@@ -16,3 +16,7 @@
 
 ![deployment.png](./doc/deployment.png)
 
+
+## 参考
+
+- [扩展kubernetes](https://kubernetes.io/zh/docs/concepts/extend-kubernetes/)
